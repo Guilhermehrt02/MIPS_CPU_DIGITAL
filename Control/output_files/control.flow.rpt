@@ -1,5 +1,5 @@
 Flow report for control
-Mon Jun 24 17:14:45 2024
+Wed Jun 26 16:54:02 2024
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -40,15 +40,15 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Jun 24 17:14:45 2024       ;
+; Flow Status                        ; Successful - Wed Jun 26 16:54:02 2024       ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                      ; control                                     ;
 ; Top-level Entity Name              ; control                                     ;
 ; Family                             ; Cyclone IV GX                               ;
 ; Device                             ; EP4CGX150DF31I7AD                           ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 40 / 149,760 ( < 1 % )                      ;
-;     Total combinational functions  ; 40 / 149,760 ( < 1 % )                      ;
+; Total logic elements               ; 35 / 149,760 ( < 1 % )                      ;
+;     Total combinational functions  ; 35 / 149,760 ( < 1 % )                      ;
 ;     Dedicated logic registers      ; 0 / 149,760 ( 0 % )                         ;
 ; Total registers                    ; 0                                           ;
 ; Total pins                         ; 52 / 508 ( 10 % )                           ;
@@ -68,7 +68,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/24/2024 17:13:58 ;
+; Start date & time ; 06/26/2024 16:53:17 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; control             ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 229335797909600.171926003703000        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 229335797909600.171943159618280        ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; control_TB     ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; control_TB                             ; --            ; --          ; eda_simulation ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
@@ -106,12 +106,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4825 MB             ; 00:00:17                           ;
-; Fitter               ; 00:00:19     ; 1.0                     ; 5829 MB             ; 00:00:22                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4752 MB             ; 00:00:05                           ;
-; Timing Analyzer      ; 00:00:03     ; 1.0                     ; 4862 MB             ; 00:00:02                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4722 MB             ; 00:00:01                           ;
-; Total                ; 00:00:44     ; --                      ; --                  ; 00:00:47                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4823 MB             ; 00:00:14                           ;
+; Fitter               ; 00:00:17     ; 1.0                     ; 5834 MB             ; 00:00:18                           ;
+; Assembler            ; 00:00:06     ; 1.0                     ; 4753 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.0                     ; 4866 MB             ; 00:00:02                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4722 MB             ; 00:00:01                           ;
+; Total                ; 00:00:42     ; --                      ; --                  ; 00:00:39                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

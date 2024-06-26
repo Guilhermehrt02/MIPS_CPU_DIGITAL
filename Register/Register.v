@@ -10,7 +10,7 @@ module Register
 	always @(posedge Clk, posedge reset)
 	begin
 		if (reset)
-			regOut <= 0; //16'b0001 0000 0011 0000;
+			regOut <= 0;
 		else
 			regOut <= regIn;
 	end

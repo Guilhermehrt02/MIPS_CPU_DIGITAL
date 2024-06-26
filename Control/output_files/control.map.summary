@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Mon Jun 24 17:14:12 2024
+Analysis & Synthesis Status : Successful - Wed Jun 26 16:53:31 2024
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : control
 Top-level Entity Name : control
 Family : Cyclone IV GX
-Total logic elements : 40
-    Total combinational functions : 40
+Total logic elements : 35
+    Total combinational functions : 35
     Dedicated logic registers : 0
 Total registers : 0
 Total pins : 52

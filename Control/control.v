@@ -16,7 +16,7 @@ module control(instructionIn, controlOut);
 	wire [5:0] codFunction;
 	wire [5:0] codOperation;
 	
-	parameter LW = 3, SW = 4, OpMat = 2; //Parametros de codOperation
+	parameter LW = 8, SW = 9, OpMat = 7; //Parametros de codOperation
 	parameter ADD = 32, SUB = 34, MUL = 50, AND = 36, OR = 37; // Parametros de codFunction
 	
 	assign codFunction = instructionIn[5:0];
@@ -35,9 +35,9 @@ module control(instructionIn, controlOut);
 				weRegFile = 1; //Select Escrita memoria reg file
 				startMultiplicador = 0; //Multiplicador desligado
 				
-				addressRS = instructionIn[24:21]; //resgata address RS 
-				addressRT = instructionIn[19:16]; //resgata address RT
-				addressRD = instructionIn[19:16]; //Por ser instrucao do tipo I, o RT é o meu destino, logo inseri ele no RD tambem
+				addressRS = instructionIn[25:21]; //resgata address RS 
+				addressRT = instructionIn[20:16]; //resgata address RT
+				addressRD = instructionIn[20:16]; 
 			end
 			
 			SW:
@@ -50,16 +50,16 @@ module control(instructionIn, controlOut);
 				weRegFile = 0; //Select Leitura memoria reg file
 				startMultiplicador = 0; //Multiplicador desligado
 				
-				addressRS = instructionIn[24:21]; //resgata address RS 
-				addressRT = instructionIn[19:16]; //resgata address RT
-				addressRD = instructionIn[19:16]; //Por ser instrucao do tipo I, o RT é o meu destino, logo inseri ele no RD tambem
+				addressRS = instructionIn[25:21]; //resgata address RS 
+				addressRT = instructionIn[20:16]; //resgata address RT
+				addressRD = instructionIn[20:16]; 
 			end
 			
 			OpMat:
 			begin
-				addressRS = instructionIn[24:21]; //resgata address RS 
-				addressRT = instructionIn[19:16]; //resgata address RT
-				addressRD = instructionIn[14:11]; //resgata address RD
+				addressRS = instructionIn[25:21]; //resgata address RS 
+				addressRT = instructionIn[20:16]; //resgata address RT
+				addressRD = instructionIn[15:11]; //resgata address RD
 			
 				case (codFunction)
 					ADD:
@@ -130,6 +130,10 @@ module control(instructionIn, controlOut);
 				weRAM = 1; //Select Leitura memoria
 				weRegFile = 0; //Select Leitura memoria reg file
 				startMultiplicador = 0; //Multiplicador desligado
+				
+				addressRS = 0; 
+				addressRT = 0;
+				addressRD = 0;
 			end
 			
 		endcase //end case codOperation

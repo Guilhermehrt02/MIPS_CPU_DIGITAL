@@ -7,15 +7,15 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/simulation/modelsim
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/simulation/modelsim
 vcontrol
-Z1 !s110 1719260104
+Z1 !s110 1719432197
 !i10b 1
-!s100 h[LXoo@bB7]JlFNZSldZi0
-IEg[@cUmOiHkb8Z[zV2`171
+!s100 4J`?g8S^R2KB`e8i]=Zhh1
+I`@3h5WQMaHhe`VYY@FYgj3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-Z3 w1719260084
+Z3 w1719431642
 Z4 8control_7_1200mv_100c_slow.vo
 Z5 Fcontrol_7_1200mv_100c_slow.vo
 L0 31
@@ -23,7 +23,7 @@ Z6 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z7 !s108 1719260104.000000
+Z7 !s108 1719432197.000000
 Z8 !s107 control_7_1200mv_100c_slow.vo|
 Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|control_7_1200mv_100c_slow.vo|
 !i113 1
@@ -33,37 +33,37 @@ Z12 tCvgOpt 0
 vcontrol_TB
 R1
 !i10b 1
-!s100 C[@]o`knMm8n`0foGE<N^1
-Imf0BLPEQ8Wj4hbi[:Do6P2
+!s100 PYok6PmKjTG2^7UaRN:K=1
+ICek?33Hd9H9X^0:^_]nR50
 R2
 R0
-w1719260035
-8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v
-FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v
+w1719431595
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v
 L0 2
 R6
 r1
 !s85 0
 31
 R7
-!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v|
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v|
 !i113 1
 R10
-!s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control
+!s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control
 R12
 ncontrol_@t@b
 vhard_block
 R1
 !i10b 1
-!s100 =Og9z:i`D79^5HBDUkmih0
-I;[2Y<E>H2[<m8f^gTzSmP1
+!s100 1M?Vl<M>_XSXGkMnI><WM0
+IEBMBHz@J`TPiDXVf[I;Ah1
 R2
 R0
 R3
 R4
 R5
-L0 1566
+L0 1433
 R6
 r1
 !s85 0

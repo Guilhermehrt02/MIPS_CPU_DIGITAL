@@ -7,49 +7,49 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/simulation/modelsim
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/simulation/modelsim
 vcontrol
-Z1 !s110 1719258555
+Z1 !s110 1719432100
 !i10b 1
-!s100 fQo=?E:79ZSFO1XF>5icc2
-I<KXkCS;Tj^TQ>LMhlzT6l2
+!s100 7QPTFB5RI`VXzb_[PBOcj1
+I>=[ATH3iLTG<ZjkU29:6n1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1719258412
-8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control.v
-FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control.v
+w1719431592
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control.v
 L0 1
 Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1719258555.000000
-!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control.v|
+!s108 1719432099.000000
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control.v|
 !i113 1
-Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control
-Z7 tCvgOpt 0
+Z4 o-vlog01compat -work work
+Z5 !s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control
+Z6 tCvgOpt 0
 vcontrol_TB
 R1
 !i10b 1
-!s100 Ng6I;`I0@1hMa91GNc5jS2
-IV0=QFGmAf?lFH=1TG6[KX0
+!s100 PYok6PmKjTG2^7UaRN:K=1
+ICek?33Hd9H9X^0:^_]nR50
 R2
 R0
-w1719258463
-8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v
-FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v
+w1719431595
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v
 L0 2
 R3
 r1
 !s85 0
 31
-R4
-!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Control/control_TB.v|
+!s108 1719432100.000000
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/MIPS_CPU_DIGITAL/Control/control_TB.v|
 !i113 1
+R4
 R5
 R6
-R7
 ncontrol_@t@b
