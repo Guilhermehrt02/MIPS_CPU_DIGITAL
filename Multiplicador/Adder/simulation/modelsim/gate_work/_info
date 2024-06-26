@@ -1,0 +1,55 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Adder/simulation/modelsim
+vAdder
+!s110 1719253962
+!i10b 1
+!s100 dKbDd;hKI]c=[oOnMfQDb0
+I547?KlfJ?j1XXo<_?6eb;2
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z2 w1719253919
+Z3 8Adder_7_1200mv_100c_slow.vo
+Z4 FAdder_7_1200mv_100c_slow.vo
+L0 31
+Z5 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z6 !s108 1719253962.000000
+Z7 !s107 Adder_7_1200mv_100c_slow.vo|
+Z8 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|Adder_7_1200mv_100c_slow.vo|
+!i113 1
+Z9 o-vlog01compat -work work
+Z10 !s92 -vlog01compat -work work +incdir+.
+Z11 tCvgOpt 0
+n@adder
+vhard_block
+!s110 1719253963
+!i10b 1
+!s100 ha69P_^2:1PKm@5J8=i281
+IEdK6V=Ua1>8<l5JPI1kaU3
+R1
+R0
+R2
+R3
+R4
+L0 1083
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+R11

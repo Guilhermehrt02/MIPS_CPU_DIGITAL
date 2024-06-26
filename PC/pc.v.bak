@@ -1,0 +1,14 @@
+module pc(Clk, reset, outputPc);
+	input Clk;
+	input reset;
+	output reg [9:0] outputPc;
+	
+	always @(posedge Clk, posedge reset)
+	begin
+		if (reset)
+			outputPc <= 0;
+		else
+			outputPc <= outputPc + 1;
+	end
+	
+endmodule 

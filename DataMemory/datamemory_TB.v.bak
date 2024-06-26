@@ -1,0 +1,64 @@
+`timescale 1ns/10ps
+module datamemory_TB();
+	reg [9:0] adress;
+	reg [31:0] din;
+	reg we;
+	reg Clk;
+	//reg enable;
+	wire [31:0] dout;
+	
+	datamemory DUT (
+		   .adress(adress),
+			.din(din),
+			.we(we),
+			.Clk(Clk),
+			//.enable(enable),
+			.dout(dout)
+	);
+					 					 
+	initial 
+	begin		
+      Clk = 0;
+	   forever #10 Clk = ~Clk;
+   end
+	
+	initial
+	begin
+		#220 $stop;
+	end
+	
+	initial
+	begin
+		//enable = 0;
+		//#20 enable = 1;
+		we = 0;
+		adress = 10'h050;
+		din = 32'hFF00AA25; 
+		
+		#20 adress = 10'h3FF;
+		din = 32'h00004669;
+		
+		#20 adress = 10'h010;
+		din = 32'h5587ABCD;
+		
+		#20 adress = 10'h020;
+		din = 32'hFDABC111;
+		
+		#20 adress = 10'h030;
+		din = 32'h25897431;
+		
+		#20 adress = 10'h060;
+		din = 32'h47ACDA00;
+		#20 we = 1;
+		adress = 10'h000;
+		
+		#20 adress = 10'h010;
+		
+		#20 adress = 10'h020;
+		
+		#20 adress = 10'h030;
+		
+		#20 adress = 10'h3FF;
+	end
+	
+endmodule

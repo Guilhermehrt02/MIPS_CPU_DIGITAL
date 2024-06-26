@@ -1,0 +1,14 @@
+module ADDRDecoding(Clk, adress, cs);
+	input [31:0] adress;
+	input Clk;
+	output reg cs;
+	
+	always @(posedge Clk)
+	begin
+		if((adress[31:14] == 0) & (adress[13:10] == 8)) //Se endereco estiver entre 2000h ~ 23FFh, cs = 0
+			cs = 0; //Se Cs = 0, habilita memoria interna
+		else
+			cs = 1; //Se Cs = 1, habilita memoria externa
+	end
+
+endmodule 

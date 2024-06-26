@@ -1,0 +1,55 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/simulation/modelsim
+vdatamemory
+Z1 !s110 1719279749
+!i10b 1
+!s100 DTZYkfTE<l[aWXMDSeOJo3
+IV?nN0Unk0lQhk1:A_H:X60
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1719278477
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1719279749.000000
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory.v|
+!i113 1
+Z5 o-vlog01compat -work work
+Z6 !s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory
+Z7 tCvgOpt 0
+vdatamemory_TB
+R1
+!i10b 1
+!s100 <Y1^WzARc:mDBPjUzknc11
+IUVCImcbR2Dm077Q]C20W?2
+R2
+R0
+w1719279738
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory_TB.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory_TB.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory_TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/DataMemory/datamemory_TB.v|
+!i113 1
+R5
+R6
+R7
+ndatamemory_@t@b

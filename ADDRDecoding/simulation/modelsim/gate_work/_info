@@ -1,0 +1,78 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding/simulation/modelsim
+vADDRDecoding
+Z1 !s110 1719274599
+!i10b 1
+!s100 9AdiSh@RFf73?Me^KM@[Z1
+IjogGm@VPgn^4=L5XT=k2a1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1719274421
+Z4 8ADDRDecoding_7_1200mv_100c_slow.vo
+Z5 FADDRDecoding_7_1200mv_100c_slow.vo
+L0 31
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1719274598.000000
+Z8 !s107 ADDRDecoding_7_1200mv_100c_slow.vo|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|ADDRDecoding_7_1200mv_100c_slow.vo|
+!i113 1
+Z10 o-vlog01compat -work work
+Z11 !s92 -vlog01compat -work work +incdir+.
+Z12 tCvgOpt 0
+n@a@d@d@r@decoding
+vADDRDecoding_TB
+R1
+!i10b 1
+!s100 0cc?fSmKh^2FNdYJQ8V5n3
+IeG9f8Y=RNHl7JYWC2Un>D1
+R2
+R0
+w1719274382
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding/ADDRDecoding_TB.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding/ADDRDecoding_TB.v
+L0 2
+R6
+r1
+!s85 0
+31
+!s108 1719274599.000000
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding/ADDRDecoding_TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding/ADDRDecoding_TB.v|
+!i113 1
+R10
+!s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/ADDRDecoding
+R12
+n@a@d@d@r@decoding_@t@b
+vhard_block
+R1
+!i10b 1
+!s100 I61nzXcVe609k6cd3bP:A2
+INS81lj[fFdaI;<[KEj[mV1
+R2
+R0
+R3
+R4
+R5
+L0 679
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12

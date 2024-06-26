@@ -1,0 +1,28 @@
+`timescale 1ns/10ps
+
+module instructionmemory_TB();
+	
+	reg Clk;
+	reg [9:0] adress;
+	wire [31:0] outInstruction;
+	
+	instructionmemory DUT(
+		.Clk(Clk), 
+		.adress(adress), 
+		.outInstruction(outInstruction)
+	);
+	
+	integer n;
+	
+	initial
+	begin
+		Clk = 0;
+		for (n=0; n<20; n=n+1)
+			#20 adress = n;
+	end
+	
+	initial #300 $stop;
+	
+	initial forever #10 Clk = ~Clk;
+	
+endmodule 

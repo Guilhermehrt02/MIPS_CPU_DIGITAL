@@ -1,0 +1,129 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "cs",
+					"strict" : false
+				},
+				{
+					"name" : "adress[11]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[13]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[14]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[12]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[31]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[15]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[16]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[17]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[18]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[19]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[20]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[21]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[22]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[23]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[24]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[25]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[26]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[27]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[28]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[29]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[30]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[8]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[9]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[10]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[4]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[5]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[6]",
+					"strict" : false
+				},
+				{
+					"name" : "adress[7]",
+					"strict" : false
+				},
+				{
+					"name" : "Clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

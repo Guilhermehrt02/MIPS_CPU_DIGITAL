@@ -1,0 +1,78 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter/simulation/modelsim
+vCounter
+Z1 !s110 1719254924
+!i10b 1
+!s100 oojQC5K8=J9IhN4lGEWc?2
+IEZ?g_[:cA6ZT[e1AhjZ9C1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1719254893
+Z4 8Counter_7_1200mv_100c_slow.vo
+Z5 FCounter_7_1200mv_100c_slow.vo
+L0 31
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1719254924.000000
+Z8 !s107 Counter_7_1200mv_100c_slow.vo|
+Z9 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|Counter_7_1200mv_100c_slow.vo|
+!i113 1
+Z10 o-vlog01compat -work work
+Z11 !s92 -vlog01compat -work work +incdir+.
+Z12 tCvgOpt 0
+n@counter
+vCounter_TB
+R1
+!i10b 1
+!s100 Qmc;BMCd[:U<c2PP0`P1Q2
+Iz_KX[?JLJl[5dBgIQYi7o1
+R2
+R0
+w1719254804
+8C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter/Counter_TB.v
+FC:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter/Counter_TB.v
+L0 3
+R6
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter/Counter_TB.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter|C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter/Counter_TB.v|
+!i113 1
+R10
+!s92 -vlog01compat -work work +incdir+C:/Users/ghori/Documents/UNIFEI/digital/MIPS_CPU/Multiplicador/Counter
+R12
+n@counter_@t@b
+vhard_block
+R1
+!i10b 1
+!s100 AZ4nWWfjoo8Y3UnQ[0FlE3
+IKz;2P6LKi_EoY850WK<iM1
+R2
+R0
+R3
+R4
+R5
+L0 506
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+R12

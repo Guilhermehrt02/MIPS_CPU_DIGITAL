@@ -1,0 +1,21 @@
+module datamemory(Clk, we, adress, din, dout);
+	input [9:0] adress;
+	input [31:0] din;
+	input we, Clk;
+	output reg[31:0] dout;
+
+	parameter numLinhas = 1024;
+	parameter numBits = 32;
+	
+	reg[numBits-1:0] M [0: (1 << $clog2(numLinhas)) -1];
+	
+	initial $readmemb("D:/Unifei/7Periodo/ProjetoDeSistemasDigitais/ProjetoFinal_MIPS/DataMemory/DataMemoryFile.txt", M);
+		
+	always @(posedge Clk) 
+	begin		
+		if (~we) M[adress] = din;
+		else dout = M[adress];
+		
+	end
+	
+endmodule 
