@@ -218,24 +218,28 @@ multiplicador MULT(
 	mul
 );
 
+//select, A, B, outputMux
 mux Mux_Alu_In(
-	wire_b_out, imm,
 	c_sel,
+	wire_b_out, imm,
 	c_out
 );
 
+//select, A, B, result
 ALU ALU(
-	wire_a_out, c_out,
 	op_sel,
+	wire_a_out, c_out,
 	op
 );
 
+//select, A, B, outputMux
 mux Mux_Alu_Out (
-	mul, op,
 	d_sel,
+	mul, op,
 	d_out
 );
 
+//Clk, reset, regIn, regOut
 Register D(
 	CLK_SYS, RST_SYS,
 	d_out, d_mem
@@ -267,9 +271,18 @@ ADDRDecoding ADDRDecoding(
 	CS
 );
 
+/*clk, 
+	ADDR,          // endereco de memoria
+ 	din,      // entrada da memoria
+ 	WR_RD,
+	cs,
+ 	dout      // saida da memoria */
 datamemory DataMemory(
-	Data_BUS_WRITE, { ADDR[9:0] },
-	WR_RD, CLK_SYS, RST_SYS,
+	CLK_SYS,
+	{ ADDR[9:0] },
+	Data_BUS_WRITE, 
+	WR_RD, 
+	RST_SYS,
 	m_wb
 );
 
@@ -290,15 +303,16 @@ wire wb_sel, cs_wb;
 wire [31:0] wire_m_out;
 assign { cs_wb, wb_sel, writeBack_en, writeBack_reg } = ctrl_wb;
 
+//select, A, B, outputMux
 mux M(
-	m_wb, Data_BUS_READ,
 	cs_wb,
+	m_wb, Data_BUS_READ,
 	wire_m_out
 );
 
 mux MUX_WB(
-	wire_d2_out, wire_m_out,
 	wb_sel,
+	wire_d2_out, wire_m_out,
 	writeBack
 );
 
