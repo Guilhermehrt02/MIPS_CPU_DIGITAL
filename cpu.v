@@ -180,13 +180,12 @@ ADDRDecoding ADDRDecoding(
 );
 
 datamemory DataMemory(
-    CLK_SYS, 
-    ADDR[9:0],
-    Data_BUS_WRITE,
-    WR_RD, 
-    CS, 
-    RST_SYS,
-    m_wb
+    CLK_SYS,
+	{ ADDR[9:0] },
+	Data_BUS_WRITE, 
+	WR_RD, 
+	RST_SYS,
+	m_wb
 );
 
 Register D2(
