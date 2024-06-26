@@ -1,61 +1,55 @@
-`timescale 1ns/10ps
+`timescale 1ns / 1ps
 
-module instructionmemory_TB();
-    reg Clk;
-    reg [9:0] adress;
-    wire [31:0] outInstruction;
+module instructionmemory_TB;
 
-    // Instância do módulo instructionmemory
-    instructionmemory DUT(
-        .Clk(Clk),
-        .adress(adress),
-        .outInstruction(outInstruction)
+    // Parameters
+    parameter data_WIDTH = 32;
+    parameter ADDR_WIDTH = 10;
+
+    // Inputs
+    reg [ADDR_WIDTH-1:0] ADDR_Prog;
+    reg clk;
+
+    // Outputs
+    wire [data_WIDTH-1:0] dataOut;
+
+    // Instantiate the Unit Under Test (UUT)
+    instructionmemory #(
+        .data_WIDTH(data_WIDTH),
+        .ADDR_WIDTH(ADDR_WIDTH)
+    ) uut (
+        .ADDR_Prog(ADDR_Prog),
+        .clk(clk),
+        .dataOut(dataOut)
     );
 
-    // Geração do clock
+    // Clock generation
     initial begin
-        Clk = 0;
-        forever #5 Clk = ~Clk; // Período de clock de 10 ns
+        clk = 0;
+        forever #5 clk = ~clk; // 10 ns period
     end
 
-    // Teste das instruções
+    // Test sequence
     initial begin
-        // Inicializa o endereço
-        adress = 0;
+        // Initialize Inputs
+        ADDR_Prog = 0;
+
+        // Wait for global reset to finish
+        #100;
         
-        // A cada 10 unidades de tempo, incrementa o endereço para ler a próxima instrução
-        #10 adress = 10'h000;
-        
-        #10 adress = 10'h001;
-        
-        #10 adress = 10'h002;
-        
-        #10 adress = 10'h003;
-        
-        #10 adress = 10'h004;
-        
-        #10 adress = 10'h005;
-        
-        #10 adress = 10'h006;
-        
-        
-        #10 adress = 10'h007;
-        
-        
-        #10 adress = 10'h008;
-        
-        
-        #10 adress = 10'h009;
-        
-        
-        #10 adress = 10'h00A;
-       
-        
-        // Testa endereço fora do intervalo das instruções definidas
-        #10 adress = 10'h00B;
-    
-        
-        // Termina a simulação
-        #10 $finish;
+        // Test each memory location
+        $display("Starting test...");
+
+        // Test memory addresses 0 to 15
+		  integer i;
+        for (i = 0; i < 16; i = i + 1) begin
+            ADDR_Prog = i;
+            #10; // wait for one clock cycle
+            $display("ADDR_Prog = %d, dataOut = %b", ADDR_Prog, dataOut);
+        end
+
+        $display("Test completed.");
+        $stop;
     end
+
 endmodule

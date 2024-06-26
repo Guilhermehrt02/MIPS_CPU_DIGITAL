@@ -1,47 +1,38 @@
-module instructionmemory(Clk, adress, outInstruction);
-    input Clk;
-    input [9:0] adress;
-    output reg [31:0] outInstruction;
+module instructionmemory #(
+    parameter data_WIDTH = 32, // words de 32 bits
+    parameter ADDR_WIDTH = 10  // 2^10 = 1024 Enderecos
+)
+(
+    input [ADDR_WIDTH-1:0] ADDR_Prog,
+    input clk,
+    output reg [data_WIDTH-1:0] dataOut
+);
 
-    parameter numLinhas = 1024;
-    parameter numBits = 32;
-
-    reg [numBits-1:0] M [0: (1 << $clog2(numLinhas)) -1];
-
-    integer i; // Declarar o inteiro fora do bloco initial
-
-    // Carrega as instruções na memória
+    reg [data_WIDTH-1:0] memoria [0:(1<<ADDR_WIDTH)-1];
     initial begin
-        // Load A
-        M[0] = 32'b00100001111000000001000000110000; // LW $t7, 0x1030 ($zero)
-        // Load B
-        M[1] = 32'b00100001111000010001000000110001; // LW $t7, 0x1031 ($zero)
-        // Load C
-        M[2] = 32'b00100001111000100001000000110010; // LW $t7, 0x1032 ($zero)
-        // Load D
-        M[3] = 32'b00100001111000110001000000110011; // LW $t7, 0x1033 ($zero)
-        // Store result
-        M[4] = 32'b00100101111001100001010000101111; // STR $t7, 0x142F ($zero)
-        // B - A
-        M[5] = 32'b00011100001000000010001010100010; // SUB $t4, $t1, $t0
-        // C - D
-        M[6] = 32'b00011100010000110010101010100010; // SUB $t5, $t2, $t3
-        // (B - A) * (C - D)
-        M[7] = 32'b00011100100001010011001010110010; // MUL $t6, $t4, $t5
-        // Add (demonstrativo)
-        M[8] = 32'b00011100000000000010001010100000; // ADD $t4, $zero, $zero
-        // And (demonstrativo)
-        M[9] = 32'b00011100000000000010001010100100; // AND $t4, $zero, $zero
-        // Or (demonstrativo)
-        M[10] = 32'b00011100000000000010001010100101; // OR $t4, $zero, $zero
-        // Preenche o restante da memória com zeros
-        for (i = 11; i < (1 << $clog2(numLinhas)); i = i + 1) begin
-            M[i] = 32'b0;
-        end
-    end
+        memoria[0] = 32'b001000_01111_00000_0001_0000_0011_0000;  // Load A
+        memoria[1] = 32'b001000_01111_00001_0001_0000_0011_0001;  // Load B
+        memoria[2] = 32'b001000_01111_00010_0001_0000_0011_0010;  // Load C
+        memoria[3] = 32'b001000_01111_00011_0001_0000_0011_0011;  // Load D
+        memoria[4] = 32'b001001_01111_00110_0001_0100_0010_1111;  // Store result
 
-    always @(posedge Clk) begin
-        outInstruction = M[adress];
+        memoria[5] = 32'b000111_00001_00000_00100_01010_100010;   // B - A
+        memoria[6] = 32'b000111_00010_00011_00101_01010_100010;   // C - D
+        memoria[7] = 32'b000111_00100_00101_00110_01010_110010;   // (B-A) * (C-D)
+
+        
+        memoria[8] = 32'b001000_01111_00000_0001_0000_0011_0000;  // Load A (repeat for bubble)
+        memoria[9] = 32'b001000_01111_00001_0001_0000_0011_0001;  // Load B (repeat for bubble)
+        memoria[10] = 32'b001000_01111_00010_0001_0000_0011_0010; // Load C (repeat for bubble)
+        memoria[11] = 32'b001000_01111_00011_0001_0000_0011_0011; // Load D (repeat for bubble)
+
+        memoria[12] = 32'b000111_00001_00000_00100_01010_100010;  // B - A (repeat for bubble)
+        memoria[13] = 32'b000111_00010_00011_00101_01010_100010;  // C - D (repeat for bubble)
+        memoria[14] = 32'b000111_00100_00101_00110_01010_110010;  // (B-A) * (C-D) (repeat for bubble)
+
+        memoria[15] = 32'b001001_01111_00110_0001_0100_0010_1111; // Store result (repeat for bubble)
     end
+    always @ (posedge clk)
+        dataOut <= memoria[ADDR_Prog]; // leitura
 
 endmodule
