@@ -1,29 +1,12 @@
-module Counter(Clk, Load, K);
-	input Clk;
-	input Load;
-	
-	output reg K; 
-
-	reg [5:0] cont;
-	
-	always @(posedge Clk, posedge Load) begin
-		if (Load == 1'b1) 
-		begin 
-			cont <= 0;
-			K <= 1'b0;
-		end
-		else 		
-			case (cont)
-			30: 
-				K <= 1'b1;	
-			
-			default:
-			begin
-				cont <= cont + 1'b1; 
-				K <= 1'b0; 
-			end
-			
-			endcase
-	end	
-	
+module Counter (
+	output K,
+	input Load, Clk, Reset
+);
+reg [4:0] counter;
+assign K = counter == 0;
+always @ (posedge Clk or posedge Reset) begin
+	if (Reset) counter = 0;
+	else if (Load) counter = 31;
+	else if (!K) counter = counter - 1;
+end
 endmodule

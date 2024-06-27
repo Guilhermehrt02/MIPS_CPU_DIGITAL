@@ -1,33 +1,33 @@
 `timescale 1ns/10ps
+
 module Counter_TB();
-	reg Clk;
-	reg Load;
-	
+
+	reg Load = 0, Clk;
 	wire K;
+	reg [2:0] i = 3'b000; 
+
 	
-	Counter Teste(
-		.Clk(Clk),
-		.Load(Load),
-		.K(K)		
-	);
+	Counter DUT(
+	.Load(Load),
+	.Clk(Clk),
+	.K(K)
+	); 
 	
-	initial begin
-		Load = 0;		
-		#10 Load = 0;
-		
-		#10 Load = 1;
-		#5 Load = 0;
-	end
-		
-	initial 
-	begin
-		Clk = 0;
-		forever #5 Clk = ~Clk;
-	end
 	
-	initial 
-	begin
-		#800 $stop;
+initial begin
+
+   Clk = 0;
+	#1 Load = 0;
+   #1 Load = 1;
+	#1 Load = 0;
+	#1 Clk = 1;
+	#2 Clk = 0;   
+	#2 Clk = 1;
+	
+	for(i = 0; i < 7; i = i + 1)begin
+		#2 Clk = 0;
+		#2 Clk = 1;
 	end
-		
+end
+
 endmodule

@@ -1,145 +1,90 @@
-module control(instructionIn, controlOut);
-	input [31:0] instructionIn;
-	output reg [19:0] controlOut;
-	
-	reg selectMux01;
-	reg selectMux02;
-	reg selectMux03;
-	reg [1:0] selectALU;
-	reg weRAM;
-	reg weRegFile;
-	reg startMultiplicador;
-	reg [3:0] addressRS;
-	reg [3:0] addressRT;
-	reg [3:0] addressRD;
-	
-	wire [5:0] codFunction;
-	wire [5:0] codOperation;
-	
-	parameter LW = 8, SW = 9, OpMat = 7; //Parametros de codOperation
-	parameter ADD = 32, SUB = 34, MUL = 50, AND = 36, OR = 37; // Parametros de codFunction
-	
-	assign codFunction = instructionIn[5:0];
-	assign codOperation = instructionIn[31:26];
-	
-	always@(instructionIn)
-	begin
-		case (codOperation)
-			LW:
-			begin
-				selectMux01 = 1; //Select IMM - Chanel 2 MUX01
-				selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-				selectMux03 = 1; //Select M - Chanel 2 MUX03
-				selectALU = 0; //Select soma Na ALU
-				weRAM = 1; //Select Leitura memoria
-				weRegFile = 1; //Select Escrita memoria reg file
-				startMultiplicador = 0; //Multiplicador desligado
-				
-				addressRS = instructionIn[25:21]; //resgata address RS 
-				addressRT = instructionIn[20:16]; //resgata address RT
-				addressRD = instructionIn[20:16]; 
+module control(input [31:0] instr,output reg [4:0] a_reg, b_reg,output [11:0] ctrl
+);
+reg c_sel; 
+reg d_sel;
+reg [1:0] op_sel; 
+reg rd_wr;
+reg wb_sel;
+reg write_back_en; 
+reg [4:0] write_back_reg; 
+assign ctrl = { c_sel, d_sel, op_sel, rd_wr, wb_sel, write_back_en, write_back_reg };
+
+integer grupo = 7; //ADICIONAR GRUPO CORRETO
+
+always @(instr[31:26], instr[25:21], instr[20:16], instr[15:11], instr[10:6], instr[5:0]) 
+begin
+	a_reg = 0;
+	b_reg = 0;
+	c_sel = 1;
+	d_sel = 1;
+	op_sel = 3;
+	rd_wr = 0;
+	wb_sel = 0;
+	write_back_en = 0;
+	write_back_reg = 0;
+	case (instr[31:26]) 
+		// Formato R
+		grupo: begin
+			if (instr[10:6] == 10)
+			 begin
+				a_reg = instr[25:21];
+				b_reg = instr[20:16];
+				c_sel = 0;
+				rd_wr = 0;
+				wb_sel = 0;
+				write_back_en = 1;
+				write_back_reg = instr[15:11];
+				case (instr[5:0])
+					// ADD
+					32: begin
+						d_sel = 1; op_sel = 0;
+					end
+					// SUB
+					34: begin
+						d_sel = 1; op_sel = 1;
+					end
+					// AND
+					36: begin
+						d_sel = 1; op_sel = 2;
+					end
+					// OR
+					37: begin
+						d_sel = 1; op_sel = 3;
+					end
+					// MULT
+					50: begin
+						d_sel = 0; op_sel = 0;
+					end
+					default: ;
+				endcase
 			end
-			
-			SW:
-			begin
-				selectMux01 = 1; //Select IMM - Chanel 2 MUX01
-				selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-				selectMux03 = 1; //Select M - Chanel 2 MUX03
-				selectALU = 0; //Select soma Na ALU
-				weRAM = 0; //Select Escrita memoria
-				weRegFile = 0; //Select Leitura memoria reg file
-				startMultiplicador = 0; //Multiplicador desligado
-				
-				addressRS = instructionIn[25:21]; //resgata address RS 
-				addressRT = instructionIn[20:16]; //resgata address RT
-				addressRD = instructionIn[20:16]; 
-			end
-			
-			OpMat:
-			begin
-				addressRS = instructionIn[25:21]; //resgata address RS 
-				addressRT = instructionIn[20:16]; //resgata address RT
-				addressRD = instructionIn[15:11]; //resgata address RD
-			
-				case (codFunction)
-					ADD:
-					begin
-						selectMux01 = 0; //Select B - Chanel 1 MUX01
-						selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-						selectMux03 = 0; //Select D - Chanel 1 MUX03
-						selectALU = 0; //Select soma Na ALU
-						weRAM = 1; //Select Leitura memoria
-						weRegFile = 1; //Select Escrita memoria reg file
-						startMultiplicador = 0; //Multiplicador desligado
-					end
-					
-					SUB:
-					begin
-						selectMux01 = 0; //Select B - Chanel 1 MUX01
-						selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-						selectMux03 = 0; //Select D - Chanel 1 MUX03
-						selectALU = 1; //Select subtracao Na ALU
-						weRAM = 1; //Select Leitura memoria
-						weRegFile = 1; //Select Escrita memoria reg file
-						startMultiplicador = 0; //Multiplicador desligado
-					end
-					
-					MUL:
-					begin
-						selectMux01 = 0; //Select B - Chanel 1 MUX01
-						selectMux02 = 0; //Select Multiplicador - Chanel 1 MUX02
-						selectMux03 = 0; //Select D - Chanel 1 MUX03
-						selectALU = 0; //Select soma Na ALU
-						weRAM = 1; //Select Leitura memoria
-						weRegFile = 1; //Select Escrita memoria reg file
-						startMultiplicador = 1; //Multiplicador ligado
-					end
-					
-					AND:
-					begin
-						selectMux01 = 0; //Select B - Chanel 1 MUX01
-						selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-						selectMux03 = 0; //Select D - Chanel 1 MUX03
-						selectALU = 2; //Select AND Na ALU
-						weRAM = 1; //Select Leitura memoria
-						weRegFile = 1; //Select Escrita memoria reg file
-						startMultiplicador = 0; //Multiplicador desligado
-					end
-					
-					OR:
-					begin
-						selectMux01 = 0; //Select B - Chanel 1 MUX01
-						selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-						selectMux03 = 0; //Select D - Chanel 1 MUX03
-						selectALU = 3; //Select OR Na ALU
-						weRAM = 1; //Select Leitura memoria
-						weRegFile = 1; //Select Escrita memoria reg file
-						startMultiplicador = 0; //Multiplicador desligado
-					end
-					
-				endcase//end case codFunction
-				
-			end //
-			
-			default:
-			begin
-				selectMux01 = 0; //Select B - Chanel 1 MUX01
-				selectMux02 = 1; //Select ALU - Chanel 2 MUX02
-				selectMux03 = 0; //Select D - Chanel 1 MUX03
-				selectALU = 0; //Select soma Na ALU
-				weRAM = 1; //Select Leitura memoria
-				weRegFile = 0; //Select Leitura memoria reg file
-				startMultiplicador = 0; //Multiplicador desligado
-				
-				addressRS = 0; 
-				addressRT = 0;
-				addressRD = 0;
-			end
-			
-		endcase //end case codOperation
-	
-		controlOut = {startMultiplicador, addressRD, addressRT, addressRS, weRegFile, selectMux03, weRAM, selectMux02, selectALU, selectMux01};
-		
-	end
-	
-endmodule 
+		end
+		// LW
+		(grupo+1): begin
+			a_reg = instr[25:21];
+			b_reg = 0;
+			c_sel = 1;
+			op_sel = 0;
+			d_sel = 1;
+			rd_wr = 0;
+			wb_sel = 1;
+			write_back_en = 1;
+			write_back_reg = instr[20:16];
+		end
+		// SW
+		(grupo+2): begin
+			a_reg = instr[25:21];
+			b_reg = instr[20:16];
+			c_sel = 1; op_sel = 0;
+			d_sel = 1;
+			rd_wr = 1; wb_sel = 1;
+			write_back_en = 0;
+			write_back_reg = 0;
+		end
+		default: ;
+	endcase
+end
+
+
+endmodule
+

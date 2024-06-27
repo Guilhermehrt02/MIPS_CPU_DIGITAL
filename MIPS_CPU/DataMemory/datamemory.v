@@ -1,47 +1,38 @@
-module datamemory (
- 	clk, 
-	ADDR,          // endereco de memoria
- 	din,      // entrada da memoria
- 	WR_RD,
-	cs,
- 	dout      // saida da memoria 
+module datamemory
+#(parameter DATA_WIDTH = 32, parameter ADDR_WIDTH = 10)
+(
+	input [(DATA_WIDTH-1):0] din,
+	input [(ADDR_WIDTH-1):0] ADDR,
+	input WR_RD, clk, rst,
+	output [(DATA_WIDTH-1):0] dout
 );
 
-
-parameter SIZE = 32; 
-
-input clk, WR_RD, cs;
-input [SIZE - 1: 0] ADDR;
-input [SIZE - 1: 0] din;
+reg [DATA_WIDTH-1:0] mem[1023:0];
+reg [ADDR_WIDTH-1:0] ADDR_Reg;
 integer i;
 
-output reg [SIZE - 1: 0] dout;
-
-reg [SIZE - 1 :0] memory [0:1023];  // 1kword de 32 bits cada 
-
-// parametros dados no trabalho 
-
 initial begin
-    memory[0] = 32'b00000000000000000000011111010001; // A = 2001
-    memory[1] = 32'b00000000000000000000111110100001; // B = 4001
-    memory[2] = 32'b00000000000000000001001110001001; // C = 5001
-    memory[3] = 32'b00000000000000000000101110111001; // D = 3001
-    
-    for (i = 4; i < 1024; i = i + 1) begin
-        memory[i] = 32'b0; // Preenche o restante da memória com zeros
-    end
+	for (i = 0; i < 1023; i = i + 1) begin
+		mem[i] = 0;
+	end
+	mem[0] = 2001;
+	mem[1] = 4001;
+	mem[2] = 5001;
+	mem[3] = 3001;
 end
 
+always @ (posedge clk or posedge rst) begin
+	if(rst)
+		ADDR_Reg <= 0;
+	else begin	
+		if (WR_RD == 0)
+			mem[ADDR] <= din;
 
-always @(posedge clk) begin
- 
-	if (cs == 1 && WR_RD == 0) 
-		memory[ADDR] <= din ;
- 	else
-	if(WR_RD == 1) 
-		dout <= memory[ADDR];
-
-	
+		ADDR_Reg <= ADDR + 14'h4D0; //LOGICA DO JORGE
+	end
 end
+
+assign dout = mem[ADDR_Reg];
 
 endmodule
+

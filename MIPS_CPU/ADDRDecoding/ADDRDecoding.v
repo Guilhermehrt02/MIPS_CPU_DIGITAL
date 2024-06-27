@@ -1,13 +1,23 @@
 module ADDRDecoding(
-    input [31:0] adress,
-    input Clk,
-    output reg cs
+	input [31:0] addr,
+	// 0 = memoria interna, 1 = memoria externa
+	output reg cs 
 );
-    always @(posedge Clk) begin
-        // Verifica se o endereço está entre 0x1730 (inicio do intervalo de memoria grupo(7)*350h) e 0x1B2F (inicio + 1kword(1023))
-        if ((adress >= 32'h00001730) && (adress <= 32'h00001B2F))
-            cs <= 0;  // Habilita memória interna
-        else
-            cs <= 1;  // Habilita memória externa
-    end
-endmodule
+	reg [31:0] inferior, superior;
+	
+	always @ (*)
+	begin
+		
+		inferior = 32'h1730; //grupo*350h
+		superior = 32'h1b2f; //grupo*350h + 3FFh
+		if(addr >= inferior) 
+		begin
+			if(addr <= superior)
+			begin
+				cs = 0; 
+			end
+			else cs = 1;
+		end
+		else cs = 1;	
+	end 
+endmodule 

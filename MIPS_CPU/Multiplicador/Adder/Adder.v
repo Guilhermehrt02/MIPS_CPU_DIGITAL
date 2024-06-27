@@ -1,8 +1,6 @@
 module Adder (
-	input  [15:0] OperandoA, OperandoB,
-	output [16:0] Soma
+	output [16:0] resul,
+	input [15:0] op_A, op_B
 );
-
-	assign Soma = (OperandoA + OperandoB);
-
-endmodule	
+assign resul = op_A + op_B;
+endmodule

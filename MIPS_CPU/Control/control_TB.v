@@ -15,13 +15,13 @@ module control_TB();
 	
 	initial
 	begin
-		    instructionIn = 32'b001000_01111_00000_0001_0000_0011_0000; //Instruction LW
-		#10 instructionIn = 32'b001001_01111_00110_0001_0100_0010_1111; //Instruction SW
-		#10 instructionIn = 32'b000111_00001_00000_00100_01010_100000; //Instruction ADD 
-		#10 instructionIn = 32'b000111_00001_00000_00100_01010_100010; //Instruction SUB 
-		#10 instructionIn = 32'b000111_00001_00000_00100_01010_110010; //Instruction MUL
-		#10 instructionIn = 32'b000111_00001_00000_00100_01010_100000; //Instruction AND
-		#10 instructionIn = 32'b000111_00001_00000_00100_01010_100101; //Instruction OR
+		instructionIn = 32'hC600001; //Instruction LW s0, 1(s3)
+		#10 instructionIn = 32'h1025000A; //Instruction SW s5, 10(s1)
+		#10 instructionIn = 32'h8A71AA0; //Instruction ADD s3, s5, s7
+		#10 instructionIn = 32'h88D52A2; //Instruction SUB t2, s4, t5
+		#10 instructionIn = 32'h8A822B2; //Instruction MUL s4, s5, t0
+		#10 instructionIn = 32'h94B4AA4; //Instruction AND t1, t2, t3
+		#10 instructionIn = 32'h8C16AA5; //Instruction OR t5, s6, s1	
 		#10 instructionIn = 32'bx;
 	end
 	

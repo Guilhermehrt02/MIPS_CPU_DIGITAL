@@ -1,25 +1,13 @@
-`timescale 1ns/1ps
+`timescale 1ns/100ps
 module extend_TB();
-	reg [15:0] offsetIn;
-	wire [31:0] immediate;
-	
-	extend DUT(
-		.offsetIn(offsetIn),
-		.immediate(immediate)	
-	);
-	
-	initial
-	begin
-		offsetIn = 16'hAABB;
-		#10 offsetIn = 16'h1515;
-		#10 offsetIn = 16'h2044;
-		#10 offsetIn = 16'hAFFC;
-		#10 offsetIn = 16'h0002;
-		#10 offsetIn = 16'h2323;
-		#10 offsetIn = 16'h9875;
-		#10 offsetIn = 16'hABCD;
-		#10 offsetIn = 16'hEF01;
-		
-	end
-	
-endmodule 
+reg [31:0] instr;
+wire [31:0] imm;
+extend DUT(instr, imm);
+initial begin
+	instr <= 16'h1234;
+	#50 instr <= 32'hffff1111;
+	#50 instr <= 32'h00008888;
+	#50 instr <= 32'ha0a0a0a0;
+	#50 $stop;
+end
+endmodule

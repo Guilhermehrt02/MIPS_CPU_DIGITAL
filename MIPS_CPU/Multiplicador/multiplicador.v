@@ -1,40 +1,17 @@
-module multiplicador(Clk, St, Done, Idle, Multiplicando, Multiplicador, Produto);
-	input Clk;
-	input St;
-	input [15:0] Multiplicando;
-	input [15:0] Multiplicador;
-	
-	output Idle;
-	output Done;
-	output [31:0] Produto;
-	
-	//Wire ACC
-	wire [32:0] Entradas;
-	wire [32:0] Saidas;
-	
-	//Wire Adder
-	wire [16:0] Soma;
-	wire [15:0] OperandoA;
-	wire [15:0] OperandoB;
-	
-	//Wire Control
-	wire K;
-	wire M;
-	wire Load;
-	wire Sh;
-	wire Ad;		
-	
-	//Auxiliares
-	assign OperandoA = Multiplicando;
-	assign OperandoB = Saidas[31:16]; 
-	assign Produto = Saidas[31:0];
-	assign M = Saidas[0];
-	assign Entradas[15:0] = Multiplicador;
-	assign Entradas[32:16] = Soma;	
-	
-	ACC acumulador01(Clk, Sh, Ad, Load, Entradas, Saidas);
-	Adder somador01(OperandoA, OperandoB, Soma);
-	Control_MUL controle01(Clk, St, K, M, Idle, Done, Load, Sh, Ad);
-	Counter contador01(Clk, Load, K);
-	
+module Multiplicador (
+	output [31:0] resul,
+	input [15:0] M1, M2,
+	input St,
+	input clk, rst
+);
+wire Load, Sh, Ad, K;
+wire[16:0] Soma;
+wire[32:0] Saidas;
+assign resul = Saidas[31:0];
+
+CONTROL control (Load, Sh, Ad, clk, K, resul[0], St, rst);
+Counter counter (K, Load, clk, rst);
+Adder adder (Soma, M1, resul[31:16]);
+ACC acc (Saidas,Soma, M2, M1,Load, Sh, Ad, clk, rst);
+
 endmodule

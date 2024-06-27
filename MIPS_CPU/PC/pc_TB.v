@@ -1,34 +1,26 @@
-`timescale 1ns/10ps
+`timescale 1ns/100ps
 module pc_TB();
-	reg Clk;
-	reg reset;
+
+reg clk;
+reg rst;
+wire [31:0] pc;
+
+pc DUT(clk, rst, pc);
+
+initial begin
+	clk = 0;
+	rst = 1;
 	
-	wire [9:0] outputPc;
+	#30 
+	rst = 0;
 	
-	pc DUT(
-		.Clk(Clk),
-		.reset(reset),
-		.outputPc(outputPc)
-	);
+	#420
+	rst = 1;
 	
-	initial
-	begin
-		reset = 0;
-		#10 reset = 1;
-		#10 reset = 0;
-		#160 reset = 1;
-		#10 reset = 0;
-	end
-	
-	initial
-	begin
-		Clk = 0;
-		forever #10 Clk = ~Clk;
-	end
-	
-	initial 
-	begin
-		#200 $stop;
-	end
-	
+	#100 
+	$stop;
+end
+
+always #20 clk = ~clk;
+
 endmodule

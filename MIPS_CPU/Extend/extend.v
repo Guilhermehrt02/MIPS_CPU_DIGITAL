@@ -1,7 +1,5 @@
-module extend(offsetIn, immediate);
-	input [15:0] offsetIn;
-	output [31:0] immediate;
-	
-	assign immediate = {16'b0, offsetIn};
+module extend(	input [31:0] instr,output [31:0] imm
+);
+assign imm = { { 16{ instr[15] } }, instr[15:0] };
+endmodule
 
-endmodule 

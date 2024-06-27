@@ -1,45 +1,20 @@
-`timescale 1ns/10ps
+`timescale 1ns/100ps
 module Register_TB();
-	reg Clk;
-	reg reset;
-	reg [31:0] regIn;
-	wire [31:0] regOut;
-	
-	Register DUT( 
-		.Clk(Clk),
-		.reset(reset),
-		.regIn(regIn),
-		.regOut(regOut)
-	);
-	
-	initial 
-	begin
-		regIn = 32'hFFFFFFFF;
-		#20 regIn = 32'hFFFFFF22;
-		#20 regIn = 32'hFFFFFF22;
-		#20 regIn = 32'hFFAAFF22;
-		#20 regIn = 32'hBB44FF22;
-		#20 regIn = 32'h1623FF22;
+reg rst, clk;
+reg [31:0] D;
+wire [31:0] Q;
+integer i;
+Register DUT(rst, clk, D, Q);
+initial begin
+	clk = 0;
+	rst = 1;	
+	#40 rst = 0;	
+	for(i = 0; i < 15; i = i + 1) 
+	begin	
+		#40 D = i;
 	end
-	
-	initial
-	begin
-		reset = 0;
-		#10 reset = 1;
-		#10 reset = 0;
-		#160 reset = 1;
-		#10 reset = 0;
-	end
-	
-	initial
-	begin
-		Clk = 0;
-		forever #10 Clk = ~Clk;
-	end
-	
-	initial 
-	begin
-		#200 $stop;
-	end
-	
+	#40 rst = 1;
+	#100 $stop;
+end
+always #20 clk = ~clk;	
 endmodule

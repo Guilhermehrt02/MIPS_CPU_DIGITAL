@@ -1,66 +1,65 @@
-`timescale 1ns/10ps
-
+`timescale 1ns/100ps
 module registerfile_TB();
-    reg Clk;
-    reg reset;
-    reg we;
-    reg [3:0] addressA;
-    reg [3:0] addressB;
-    reg [3:0] addressIn;
-    reg [31:0] regIn;
-    wire [31:0] A;
-    wire [31:0] B;
-    
-    registerfile DUT (
-        .Clk(Clk),
-        .reset(reset),
-        .we(we),
-        .addressA(addressA),
-        .addressB(addressB),
-        .addressIn(addressIn),
-        .regIn(regIn),
-        .A(A),
-        .B(B)
-    );
-    
-    initial begin
-        Clk = 0;
-        forever #10 Clk = ~Clk;
-    end
-    
-    initial begin
-        reset = 0;
-        #10 reset = 1;
-        #10 reset = 0;
-        
-        // Escrever nos registradores
-        we = 0;
-        addressIn = 4'b0011;
-        regIn = 32'hABABFFFF;//escreve em s3 esse valor
-        #20;
-        
-        addressIn = 4'b0101;
-        regIn = 32'h15161718;//escreve em s5 esse valor
-        #20;
-        
-        addressIn = 4'b1111;
-        regIn = 32'h0045AB7F;//escreve em t7 esse valor
-        #20;
-        
-        // Ler dos registradores
-        we = 1;
-        addressA = 4'b0011; // valor de s3
-        addressB = 4'b0100; // Este não foi escrito, deve ser 0
-        #20;
-        
-        addressA = 4'b0001; // Este não foi escrito, deve ser 0
-        addressB = 4'b1111; // valor de t7
-        #20;
-        
-        addressA = 4'b1111; // valor de t7
-        addressB = 4'b0101; // valor de r3
-        #20;
-        
-        $stop;
-    end
+
+reg clk;
+reg rst;
+reg write_back_en;
+reg [4:0] write_back_reg; 
+reg [31:0] write_back;
+reg [4:0] a_reg, b_reg;
+wire [31:0] a, b;
+
+integer k=0;
+
+registerfile DUT(clk, rst, write_back_en, write_back_reg, write_back, a_reg, b_reg, a, b);
+
+initial begin
+	clk = 1;
+	rst = 1;
+	write_back_en = 0;
+	write_back_reg = 0;
+	write_back = 0;
+	a_reg = 0;
+	b_reg = 0;
+
+	#10
+	
+	// Lendo
+
+	rst = 0;
+	write_back_en = 0;
+	
+	for (k=0; k < 32; k = k + 1) begin
+		#20
+		a_reg = a_reg + 1;
+		b_reg = b_reg + 1;
+		
+	end
+	
+	// Escrevendo
+
+	write_back_en = 1;
+	
+	for (k=0; k < 32; k = k + 1) begin
+		#20
+		write_back_reg = write_back_reg + 1;
+		write_back = write_back + 1;
+	end
+	
+	// Lendo
+
+	write_back_en = 0;
+	
+	for (k=0; k < 32; k = k + 1) begin
+		#20
+		a_reg = a_reg + 1;
+		b_reg = b_reg + 1;
+	end
+
+	#20 $stop();
+end
+
+always #10 clk = ~clk;
+
 endmodule
+

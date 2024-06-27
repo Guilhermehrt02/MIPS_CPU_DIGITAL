@@ -1,37 +1,22 @@
-`timescale 1ns/10ps
+`timescale 1ns/100ps
+
 module mux_TB();
-	reg select;
-	reg [31:0] A;
-	reg [31:0] B;
+
+	reg [31:0] a, b;
+	reg sel;
+	wire [31:0] out;
 	
-	wire [31:0] outputMux;
+	mux DUT (a, b, sel, out);
 	
-	mux Teste(
-		.select(select),
-		.A(A),
-		.B(B),
-		.outputMux(outputMux)
-	);
-	
-	initial
-	begin
-		select = 0;
-		A = 10;
-		B = 25;
+	initial begin
+		a = 0;
+		b = 1;
 		
-		#10 select = 1;
-		A = 11;
-		B = 9;
+		#20 sel = 1;
 		
-		#10 select = 0;
-		A = 150;
-		B = 1;
+		#20 sel = 0;
 		
-		#10 select = 1;
-		A = 3;
-		B = 15;
-		
-		#10;
+		#20 $stop;
 	end
-	
-endmodule
+
+endmodule 

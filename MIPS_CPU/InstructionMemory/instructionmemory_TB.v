@@ -1,55 +1,29 @@
-`timescale 1ns / 1ps
+`timescale 1ns/100ps
+module instructionmemory_TB();
+reg [9:0] ADDR_Prog;
+reg clk;
+reg rst;
+wire [31:0] data_out;
 
-module instructionmemory_TB;
+integer i = 0;
 
-    // Parameters
-    parameter data_WIDTH = 32;
-    parameter ADDR_WIDTH = 10;
+instructionmemory DUT(ADDR_Prog, clk, rst, data_out);
 
-    // Inputs
-    reg [ADDR_WIDTH-1:0] ADDR_Prog;
-    reg clk;
+initial begin
+	clk = 0;
+	rst = 1;
+	ADDR_Prog = 0;
 
-    // Outputs
-    wire [data_WIDTH-1:0] dataOut;
+	#40
+	rst = 0;
+	
+	for (i=0; i < 30; i = i + 1) begin
+		#40 ADDR_Prog = i;
+	end
+	
+	#40 $stop;
+end
 
-    // Instantiate the Unit Under Test (UUT)
-    instructionmemory #(
-        .data_WIDTH(data_WIDTH),
-        .ADDR_WIDTH(ADDR_WIDTH)
-    ) uut (
-        .ADDR_Prog(ADDR_Prog),
-        .clk(clk),
-        .dataOut(dataOut)
-    );
-
-    // Clock generation
-    initial begin
-        clk = 0;
-        forever #5 clk = ~clk; // 10 ns period
-    end
-
-    // Test sequence
-    initial begin
-        // Initialize Inputs
-        ADDR_Prog = 0;
-
-        // Wait for global reset to finish
-        #100;
-        
-        // Test each memory location
-        $display("Starting test...");
-
-        // Test memory addresses 0 to 15
-		  integer i;
-        for (i = 0; i < 16; i = i + 1) begin
-            ADDR_Prog = i;
-            #10; // wait for one clock cycle
-            $display("ADDR_Prog = %d, dataOut = %b", ADDR_Prog, dataOut);
-        end
-
-        $display("Test completed.");
-        $stop;
-    end
+always #20 clk = ~clk;
 
 endmodule

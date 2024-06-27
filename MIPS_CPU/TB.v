@@ -12,12 +12,7 @@ wire [31:0] ADDR;
 wire CS, CS_P, WR_RD;
 wire [31:0] Data_BUS_WRITE;
 
-input CLK, RST,
-    input [31:0] Prog_BUS_READ,
-    input [31:0] Data_BUS_READ,
-    output [31:0] ADDR, 
-    output CS, CS_P, WR_RD,
-    output [31:0] Data_BUS_WRITE
+
 cpu DUT (CLK, RST, Prog_BUS_READ, Data_BUS_READ, ADDR, CS, CS_P, WR_RD, Data_BUS_WRITE);
 
 reg CLK_SYS, CLK_MUL;
@@ -39,13 +34,13 @@ initial begin
 	#T_CLK
 	RST = 0;
 
-	wait (ADDR == 16'h2f0f);
+	wait (ADDR == 16'h1b2f); //grupo*350h + 3FFh 
 	#(T_CLK_SYS/2)
 	$display("Com hazzard: Data_BUS_WRITE=%d",Data_BUS_WRITE);
 
 	#(T_CLK_SYS*3/2);
 
-	wait (ADDR == 16'h2f0f);
+	wait (ADDR == 16'h1b2f); //grupo*350h + 3FFh
 	#(T_CLK_SYS/2);
 
 	$display("Sem hazzard: Data_BUS_WRITE=%d", Data_BUS_WRITE);
@@ -58,3 +53,4 @@ end
 always # (T_CLK/2) CLK = ~CLK;
 
 endmodule
+
