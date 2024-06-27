@@ -1,7 +1,0 @@
-
-State Machine - |multiplicador|Control_MUL:controle01|estAtual
-Name estAtual.S3 estAtual.S2 estAtual.S1 estAtual.S0 
-estAtual.S0 0 0 0 0 
-estAtual.S1 0 0 1 1 
-estAtual.S2 0 1 0 1 
-estAtual.S3 1 0 0 1 
