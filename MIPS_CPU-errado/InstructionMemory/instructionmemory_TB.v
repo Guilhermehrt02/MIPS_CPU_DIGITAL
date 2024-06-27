@@ -1,55 +1,52 @@
-`timescale 1ns / 1ps
-
 module instructionmemory_TB;
+  // Parameters
+  parameter DATA_WIDTH = 32;
+  parameter ADDR_WIDTH = 10;
 
-    // Parameters
-    parameter data_WIDTH = 32;
-    parameter ADDR_WIDTH = 10;
+  // Inputs
+  reg [ADDR_WIDTH-1:0] address;
+  reg clk;
 
-    // Inputs
-    reg [ADDR_WIDTH-1:0] ADDR_Prog;
-    reg clk;
+  // Outputs
+  wire [DATA_WIDTH-1:0] dataOut;
 
-    // Outputs
-    wire [data_WIDTH-1:0] dataOut;
+  // Instantiate the Unit Under Test (UUT)
+  instructionmemory #(DATA_WIDTH, ADDR_WIDTH) uut (
+    .address(address), 
+    .clk(clk), 
+    .dataOut(dataOut)
+  );
 
-    // Instantiate the Unit Under Test (UUT)
-    instructionmemory #(
-        .data_WIDTH(data_WIDTH),
-        .ADDR_WIDTH(ADDR_WIDTH)
-    ) uut (
-        .ADDR_Prog(ADDR_Prog),
-        .clk(clk),
-        .dataOut(dataOut)
-    );
+  initial begin
+    // Initialize Inputs
+    address = 0;
+    clk = 0;
 
-    // Clock generation
-    initial begin
-        clk = 0;
-        forever #5 clk = ~clk; // 10 ns period
-    end
+    // Wait for the global reset
+    #10;
+    
+    // Stimulus
+    address = 0; #10; // Expect dataOut to be 32'b001000_01111_00000_0001_0000_0011_0000
+    address = 1; #10; // Expect dataOut to be 32'b001000_01111_00001_0001_0000_0011_0001
+    address = 2; #10; // Expect dataOut to be 32'b001000_01111_00010_0001_0000_0011_0010
+    address = 3; #10; // Expect dataOut to be 32'b001000_01111_00011_0001_0000_0011_0011
+    address = 4; #10; // Expect dataOut to be 32'b000111_00001_00000_00100_01010_100010
+    address = 5; #10; // Expect dataOut to be 32'b000111_00010_00011_00101_01010_100010
+    address = 6; #10; // Expect dataOut to be 32'b000111_00100_00101_00110_01010_110010
+    address = 7; #10; // Expect dataOut to be 32'b001001_01111_00110_0001_0100_0010_1111
+    
+    // Continue for other addresses as needed
 
-    // Test sequence
-    initial begin
-        // Initialize Inputs
-        ADDR_Prog = 0;
+    // Finish simulation
+    $finish;
+  end
 
-        // Wait for global reset to finish
-        #100;
-        
-        // Test each memory location
-        $display("Starting test...");
+  // Clock generation
+  always #5 clk = ~clk;
 
-        // Test memory addresses 0 to 15
-		  integer i;
-        for (i = 0; i < 16; i = i + 1) begin
-            ADDR_Prog = i;
-            #10; // wait for one clock cycle
-            $display("ADDR_Prog = %d, dataOut = %b", ADDR_Prog, dataOut);
-        end
-
-        $display("Test completed.");
-        $stop;
-    end
+  // Monitor changes
+  initial begin
+    $monitor("At time %t, address = %h, dataOut = %h", $time, address, dataOut);
+  end
 
 endmodule
